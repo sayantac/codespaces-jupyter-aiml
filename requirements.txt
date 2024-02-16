@@ -11,7 +11,10 @@ fastapi==0.109.2
 uvicorn==0.27.1
 semantic-kernel==0.5.1.dev0
 langchain==0.1.7
+langchain-openai==0.0.6
 beautifulsoup4==4.12.3
 faiss-cpu==1.7.4
 tiktoken==0.6.0
 qdrant-client==1.7.3
+transformers==4.37.2
+gradio==4.19.0
