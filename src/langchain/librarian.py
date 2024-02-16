@@ -1,7 +1,7 @@
-from langchain.chat_models import ChatOpenAI
-from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_openai.chat_models import ChatOpenAI
+from langchain_openai.embeddings import OpenAIEmbeddings
 from langchain.chains import RetrievalQA
-from langchain.vectorstores import Qdrant
+from langchain_community.vectorstores import Qdrant
 from langchain.document_loaders.csv_loader import CSVLoader
 
 loader = CSVLoader(
@@ -26,6 +26,6 @@ while True:
 
     book_request = "You are a librarian. Help the user answer their question. Do not provide the ISBN." +\
         f"\nUser:{user_input}"
-    result = qa({"query": book_request})
+    result = qa.invoke({"query": book_request})
     print(len(result["source_documents"]))
     print(result["result"])

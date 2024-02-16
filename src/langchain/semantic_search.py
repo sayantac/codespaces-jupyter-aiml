@@ -1,8 +1,8 @@
-from langchain.chat_models import ChatOpenAI
-from langchain.document_loaders import WebBaseLoader
+from langchain_openai.chat_models import ChatOpenAI
+from langchain_openai.embeddings import OpenAIEmbeddings
+from langchain_community.document_loaders import WebBaseLoader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.vectorstores import FAISS
-from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 
 loader = WebBaseLoader("https://en.wikipedia.org/wiki/Tea")
@@ -18,4 +18,4 @@ qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(), chain_type="stuff", retriever
 
 while True:
     query = input("Ask a question about tea\n")
-    print(qa.run(query))
+    print(qa.invoke(query))

@@ -1,4 +1,4 @@
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langchain.prompts.chat import (
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
@@ -8,7 +8,7 @@ from langchain.chains import LLMChain
 from langchain.schema import BaseOutputParser
 
 chat_model = ChatOpenAI()
-print(chat_model.predict("hi"))
+print(chat_model.invoke("hi"))
 
 system_template = """You are a helpful assistant who generates comma separated lists.
 A user will pass in a category, and you should generate 5 objects in that category in a comma separated list.
@@ -34,4 +34,4 @@ chain = LLMChain(
 )
 
 # blue, green, yellow, red, purple
-print(chain.run("colours"))
+print(chain.invoke("colours"))

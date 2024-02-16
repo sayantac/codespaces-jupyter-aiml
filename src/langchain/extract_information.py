@@ -1,9 +1,7 @@
-from langchain.chat_models import ChatOpenAI
-from langchain.prompts.chat import (
-    PromptTemplate
-)
+from langchain_openai import ChatOpenAI
+from langchain.prompts import PromptTemplate
 from langchain.output_parsers import PydanticOutputParser
-from pydantic import BaseModel, Field
+from langchain_core.pydantic_v1 import BaseModel, Field
 
 class Furniture(BaseModel):
     type: str = Field(description="type of furniture")
@@ -21,6 +19,8 @@ prompt = PromptTemplate(
 
 _input = prompt.format_prompt(query=furniture_request)
 model = ChatOpenAI()
-output = model.predict(_input.to_string())
-parsed = parser.parse(output)
+
+output = model.invoke(_input.to_string())
+parsed = parser.parse(output.content)
+
 print(parsed.colour)

@@ -1,4 +1,4 @@
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langchain.prompts.chat import (
     ChatPromptTemplate,
     SystemMessagePromptTemplate,
@@ -30,10 +30,9 @@ def generate_travel_recommendations(travel_requests):
 
     recommendations = []
     for travel_request in travel_requests:
-        recommendations.append(chain.run(travel_request))
+        recommendations.append(chain.invoke(travel_request))
 
     return recommendations
-
 
 def generate_travel_requests(n=5) -> list[str]:
     """ Generate travel requests
@@ -54,7 +53,7 @@ def generate_travel_requests(n=5) -> list[str]:
     
     results = []
     for _ in range(0, n):
-        results.append(chain.run("beach vacation"))
+        results.append(chain.invoke("beach vacation"))
     return results
 
 # generate some requests
