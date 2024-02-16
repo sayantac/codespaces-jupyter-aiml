@@ -1,10 +1,11 @@
-import os
-import openai
+from openai import OpenAI
 from dotenv import load_dotenv
 load_dotenv()
-openai.api_key = os.getenv('OPENAI_API_KEY')
+
+client = OpenAI()
+
 # Challenge: Turning Away Rude Customers
-# Build a GPT-4 python app that talks with a user.
+# Build a GPT-3.5 Turbo python app that talks with a user.
 # End the conversation if they're being rude
 
 # test case 1 'you're the worst human i've talked to' -> RUDE
@@ -17,7 +18,7 @@ while True:
     user_input = input("")
     if user_input == "exit" or user_input == "quit":
         break
-    response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "You are a pizza loving person. If someone says something rude print exactly 'RUDE', otherwise respond"},
@@ -27,8 +28,8 @@ while True:
         max_tokens=150,
     )
 
-    response_message = response["choices"][0]["message"]
-    response_content = response_message["content"]
+    response_message = response.choices[0].message
+    response_content = response_message.content
     if response_content == "RUDE":
         print("I don't talk to rude people, goodbye!")
         break
