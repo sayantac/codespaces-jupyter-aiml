@@ -26,6 +26,6 @@ prompt2 = """1st Law of Thermodynamics - Energy cannot be created or destroyed.
 summarize = kernel.create_semantic_function(
     prompt_template=sk_prompt, max_tokens=200, temperature=0, top_p=0.5)
 
-summary = await summarize(pr)
+summary = summarize(prompt1)
 
 print(f"Output: {summary}")  # Output: Robots must not harm humans.
