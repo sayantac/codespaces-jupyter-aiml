@@ -1,4 +1,4 @@
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langchain.prompts.chat import (
     ChatPromptTemplate,
     SystemMessagePromptTemplate,
@@ -31,7 +31,7 @@ def generate_book_recommendations(book_requests):
 
     recommendations = []
     for book_request in book_requests:
-        recommendations.append(chain.run(book_request))
+        recommendations.append(chain.invoke(book_request).get("text"))
 
     return recommendations
 
@@ -56,7 +56,7 @@ def generate_book_requests(n=5) -> list[str]:
     results = []
 
     for _ in range(0, n):
-        results.append(chain.run("book"))
+        results.append(chain.invoke("book").get("text"))
 
     return results
 
@@ -65,6 +65,7 @@ book_requests = generate_book_requests()
 print("The book requests are:\n")
 print("\n".join(book_requests))
 print("\n")
+
 # get the recommendations
 print("The book recommendations are:\n")
 recommendations = generate_book_recommendations(book_requests)
@@ -79,11 +80,11 @@ for i in range(0, len(recommendations)):
     q = book_requests[i]
     a = recommendations[i]
     question_answers.append({"question": q, "answer": a})
-    response = llm.predict(
+    response = llm.invoke(
         f"Generate the response to the question: {q}. Only print the answer.")
-    predictions.append({"result": {response}})
+    predictions.append({"result": {response.content}})
 
-print("\nGenerating Self eval:")
+print("\nGenerating Self Eval:")
 
 # Start your eval chain
 eval_chain = QAEvalChain.from_llm(llm)
