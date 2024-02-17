@@ -11,5 +11,5 @@ async def read_index():
 async def gpt(review: str):
     return generate_review(review)
 
-# cd genai/chatgpt/sentiment_discount_app
+# cd src/chatgpt/sentiment_discount_app
 # uvicorn main:app --reload

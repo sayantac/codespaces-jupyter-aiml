@@ -1,6 +1,4 @@
 from openai import OpenAI
-from dotenv import load_dotenv
-load_dotenv()
 
 client = OpenAI()
 
@@ -13,6 +11,7 @@ client = OpenAI()
 # test case 3 'I like pizza. What do you like?'
 # test case 4 'I bite my thumb at you!'
 # test case 5 'I think this product doesnt work!' -> RUDE
+
 print("\n\nBot: Hey how's it going?")
 while True:
     user_input = input("")

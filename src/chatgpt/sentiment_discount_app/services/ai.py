@@ -1,6 +1,4 @@
 from openai import OpenAI
-from dotenv import load_dotenv
-load_dotenv()
 
 client = OpenAI()
 
@@ -16,6 +14,8 @@ def generate_review(review):
     )
 
     response_message = response.choices[0].message.content
+
     if response_message == "happy":
         return "Thanks for shopping with us, come back soon!"
+    
     return "Sorry to hear about your experience, here's a coupon for 20% off, type GPT20 to use it!"
