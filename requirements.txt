@@ -22,3 +22,7 @@ fastcore==1.5.29
 llama-index==0.10.5
 atlassian-python-api==3.41.10
 docarray==0.40.0
+langchain-experimental==0.0.55
+numexpr==2.9.0
+wikipedia==1.4.0
+langchainhub==0.1.15
