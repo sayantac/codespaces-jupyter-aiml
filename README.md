@@ -8,6 +8,7 @@ Everything you do here is contained within this one codespace. There is no repos
 
 which python
 python -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate (Linux)
+.venv/Scripts/activate (Windows)
 pip install -r requirements.txt
 deactivate

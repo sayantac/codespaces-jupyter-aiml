@@ -4,3 +4,4 @@ notebooks/cifar_net.pth
 __pycache__
 *.env
 *.venv
+playgroundenv
